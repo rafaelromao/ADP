@@ -1,0 +1,75 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7B46BCBD-4D00-4275-88FF-5E8EFCE4CCED}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cati.ADP.Objects</RootNamespace>
+    <AssemblyName>ADPObjects</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ADPCollection.cs" />
+    <Compile Include="ADPCache.cs" />
+    <Compile Include="ADPFilterCondition.cs" />
+    <Compile Include="ADPFilterCriteria.cs" />
+    <Compile Include="ADPAttributes.cs" />
+    <Compile Include="ADPMappingInformation.cs" />
+    <Compile Include="ADPObject.cs" />
+    <Compile Include="ADPPersister.cs" />
+    <Compile Include="ADPPropertyValue.cs" />
+    <Compile Include="ADPSession.cs" />
+    <Compile Include="ADPSortComparer.cs" />
+    <Compile Include="ADPWorkList.cs" />
+    <Compile Include="IADPAssignable.cs" />
+    <Compile Include="ADPBasePersisterHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ADPClientLibrary\ADPClientLibrary.csproj">
+      <Project>{5DE86E9C-CB67-4D01-BD81-2D7D0858D555}</Project>
+      <Name>ADPClientLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ADPCommon\ADPCommon.csproj">
+      <Project>{E9C46FCF-0055-44B2-AADC-1084BE7C7BF9}</Project>
+      <Name>ADPCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ADPServerLibrary\ADPServerLibrary.csproj">
+      <Project>{CEEF83E7-A002-4425-9813-ADD11F5DB878}</Project>
+      <Name>ADPServerLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
