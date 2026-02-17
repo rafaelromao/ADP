@@ -1,20 +1,130 @@
-# Delphi build artifacts
-*.dcu
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# Visual Studio Code
+.vscode/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# NuGet
+*.nupkg
+# NuGet Symbols
+*.snupkg
+# Package restore
+*.cache
+# NuGet
+*.nuget.props
+*.nuget.targets
+packages/
+!packages/build/
+# Build results
+[Tt]est[Ww]eb/
+*[Ww]eb[Aa]pplications/
+!*[Ww]eb[Aa]pplications/[Ww]eb[Aa]pi
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET
+[Ll]og/
+*.log
+
+# Visual Studio cache files
+# files ending in .cache or .log
+*.cache
+*.log
+# Visual Studio code coverage files
+*.coverage
+*.coveragexml
+
+# MSBuild Binary and Log File
+*.binlog
+
+# MSTest test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Windows Store
+PackageThumbprint
+
+# Visual Studio cache directories
+.vs/
+.vscode/
+# Uncomment if you have tasks that create the web's static files in wwwroot
+#wwwroot/
+
+# Visual Studio 2015/2017 cache/options directory
+.vs/
+# Uncomment if you have tasks that create the web's static files in wwwroot
+#wwwroot/
+
+# Visual Studio Code
+.vscode/
+!/.vscode/tasks.json
+
+# Local History for Visual Studio Code
+.history/
+
+# Windows Installer files
+*.msi
+*.msix
+
+# .NET
+*.dll
 *.exe
-*.bpl
-*.dcp
-*.dpl
-*.bpi
-*.obj
-*.o
-*.res
-*.drc
+*.pdb
+*.cache
+*.profraw
+*.mortent
 
-# IDE files
-*.dsk
-*.identcache
-*.~*
-*.bak
+# Rider
+.idea/
 
-# Backup files
-*~
+# Azure Pipelines
+.azurepipelines/
+
+# GitHub Actions
+.github/
