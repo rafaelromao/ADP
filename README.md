@@ -12,6 +12,8 @@ ADP (Abstract Data Provider) is a custom ORM (Object-Relational Mapping) framewo
 **Created**: ~2007  
 **Status**: This library is posted as a portfolio project only.
 
+> **Note**: This is also a **custom RPC (Remote Procedure Call) framework** - the database operations are executed on a remote server via TCP/IP sockets, with a custom binary protocol for message serialization.
+
 ## Architecture
 
 ### Multi-Layer Architecture
@@ -91,6 +93,47 @@ ADP (Abstract Data Provider) is a custom ORM (Object-Relational Mapping) framewo
 | `ADPFilterCriteria` | Query builder for dynamic queries |
 
 ## How It Works
+
+### RPC-Based Client-Server Communication
+
+This is fundamentally an **RPC (Remote Procedure Call) framework** where database operations are executed on a remote server. The client never connects directly to the database - all operations go through the ADPServer via TCP/IP sockets.
+
+```
+┌──────────────┐    ExecuteSelectStatement()    ┌──────────────┐
+│   Client     │ ───────────────────────────► │    Server    │
+│              │ ◄─────────────────────────── │              │
+│ ADPClient    │      DataTable (XML)         │ ADPServer    │
+│              │                               │              │
+└──────────────┘                               └──────────────┘
+```
+
+#### How RPC Works in ADP
+
+1. **Client** calls `ADPClient.ExecuteSelectStatement(connectionID, sql, params)`
+2. **ADPClient** serializes the call into an `ADPMessage` with:
+   - Message ID (operation type)
+   - Parameters (SQL + ADPParam array)
+3. **ADPCommandClient** sends the message over TCP/IP to the server
+4. **ADPServer** receives the message, interprets the command
+5. **ADPProvider** executes the SQL against the actual database
+6. **Result** (DataTable) is serialized to XML and sent back to client
+7. **Client** deserializes and returns DataTable to caller
+
+#### Supported RPC Operations
+
+| Message Type | Description |
+|--------------|-------------|
+| `Login` | Authenticate and create database session |
+| `StartTransaction` | Begin a new transaction |
+| `Commit` | Commit the transaction |
+| `Rollback` | Rollback the transaction |
+| `GetConnection` | Acquire a pooled connection |
+| `ReleaseConnection` | Return connection to pool |
+| `ExecuteSelectStatement` | Execute SELECT query |
+| `ExecuteSelectStatementInTransaction` | Execute SELECT in transaction |
+| `ExecuteCommandStatement` | Execute INSERT/UPDATE/DELETE |
+| `GetKey` | Generate new primary key |
+| `GetSQLStatement` | Retrieve stored SQL statement |
 
 ### 1. Connection and Session Management
 
@@ -183,7 +226,9 @@ public enum ADPKeyGeneration {
 ### 7. Thread-Safe Message Processing
 `ADPCommandServer` uses `ThreadPool.QueueUserWorkItem` for concurrent command processing with proper locking.
 
-## Network Protocol
+## Network Protocol (RPC)
+
+The communication between client and server uses a custom RPC protocol over TCP/IP sockets.
 
 ### Message Format
 ```
@@ -231,8 +276,9 @@ Creative Commons Attribution 4.0 International (CC BY 4.0) - See LICENSE file fo
 
 This project demonstrates:
 
+- **RPC (Remote Procedure Call)**: Custom TCP/IP-based RPC framework with message serialization, checksum validation, and packet splitting
 - **ORM Design**: Building an object-relational mapper from scratch
-- **Client-Server Architecture**: TCP/IP-based distributed system design
+- **Client-Server Architecture**: Distributed system design with remote database access
 - **Connection Pooling**: Resource management in high-concurrency scenarios
 - **Design Patterns**: Application of classic patterns in real-world code
 - **ADO.NET Mastery**: Low-level database access patterns
