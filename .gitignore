@@ -1,0 +1,20 @@
+# Delphi build artifacts
+*.dcu
+*.exe
+*.bpl
+*.dcp
+*.dpl
+*.bpi
+*.obj
+*.o
+*.res
+*.drc
+
+# IDE files
+*.dsk
+*.identcache
+*.~*
+*.bak
+
+# Backup files
+*~
